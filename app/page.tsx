@@ -2,7 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { AuthButton } from "@/components/auth-button"
-import { ArrowRight, Zap, Shield, Rocket, Code2, Database, Palette } from "lucide-react"
+import { ArrowRight, Search, Shield, Brain, Code2, Database, Palette, Camera, Eye, Image } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -12,9 +12,9 @@ export default function HomePage() {
         <div className="container flex h-14 items-center">
           <div className="mr-4 hidden md:flex">
             <Link className="mr-6 flex items-center space-x-2" href="/">
-              <Zap className="h-6 w-6" />
+              <Search className="h-6 w-6" />
               <span className="hidden font-bold sm:inline-block">
-                HackTemplate
+                VisualMemory
               </span>
             </Link>
             <nav className="flex items-center space-x-6 text-sm font-medium">
@@ -32,7 +32,7 @@ export default function HomePage() {
               </Link>
               <Link
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
-                href="https://github.com"
+                href="https://github.com/kozhokaru/buildathon-project-one"
                 target="_blank"
               >
                 GitHub
@@ -56,12 +56,12 @@ export default function HomePage() {
           <div className="flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center py-20 text-center">
             <div className="mx-auto flex max-w-[980px] flex-col items-center gap-4">
               <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-6xl lg:leading-[1.1]">
-                Build 5 Apps in 5 Hours
-                <span className="bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent"> Lightning Fast</span>
+                Your Visual Memory,
+                <span className="bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent"> Instantly Searchable</span>
               </h1>
               <p className="max-w-[750px] text-lg text-muted-foreground sm:text-xl">
-                Production-ready Next.js template with authentication, AI integration, 
-                and beautiful UI components. Clone, customize, ship.
+                Capture, organize, and instantly search through all your screenshots 
+                using AI-powered visual and text recognition. Never lose important information again.
               </p>
               <div className="flex gap-4 mt-8">
                 <Link href="/dashboard">
@@ -69,7 +69,7 @@ export default function HomePage() {
                     Get Started <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
-                <Link href="https://github.com" target="_blank">
+                <Link href="https://github.com/kozhokaru/buildathon-project-one" target="_blank">
                   <Button size="lg" variant="outline">
                     View on GitHub
                   </Button>
@@ -77,16 +77,16 @@ export default function HomePage() {
               </div>
               <div className="mt-12 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-primary" />
-                  <span>Auth Ready</span>
+                  <Brain className="h-4 w-4 text-primary" />
+                  <span>AI-Powered Search</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Rocket className="h-4 w-4 text-primary" />
-                  <span>Deploy in Minutes</span>
+                  <Eye className="h-4 w-4 text-primary" />
+                  <span>Visual Recognition</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Code2 className="h-4 w-4 text-primary" />
-                  <span>TypeScript</span>
+                  <Search className="h-4 w-4 text-primary" />
+                  <span>Instant Retrieval</span>
                 </div>
               </div>
             </div>
@@ -98,29 +98,29 @@ export default function HomePage() {
       <section id="features" className="container py-20">
         <div className="mx-auto flex max-w-[980px] flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-bold leading-tight tracking-tighter md:text-4xl">
-            Everything You Need to Win
+            Powerful Features for Visual Organization
           </h2>
           <p className="max-w-[750px] text-lg text-muted-foreground">
-            Stop wasting time on boilerplate. Focus on your unique features.
+            Everything you need to capture, organize, and search your visual information.
           </p>
         </div>
         <div className="mx-auto grid gap-4 md:grid-cols-3 mt-12">
           <Card className="relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
             <CardHeader className="relative">
-              <Shield className="h-10 w-10 text-primary mb-2" />
-              <CardTitle>Authentication Built-in</CardTitle>
+              <Camera className="h-10 w-10 text-primary mb-2" />
+              <CardTitle>Smart Screenshot Capture</CardTitle>
               <CardDescription>
-                Supabase auth with email/password and Google OAuth. 
-                Protected routes, middleware, and user hooks ready to use.
+                Automatically capture and process your screenshots with intelligent 
+                text extraction and visual element detection.
               </CardDescription>
             </CardHeader>
             <CardContent className="relative">
               <ul className="text-sm text-muted-foreground space-y-1">
-                <li>• Email & OAuth login</li>
-                <li>• Protected routes</li>
-                <li>• User management</li>
-                <li>• Session handling</li>
+                <li>• Automatic text extraction</li>
+                <li>• Visual element detection</li>
+                <li>• Instant indexing</li>
+                <li>• Batch processing</li>
               </ul>
             </CardContent>
           </Card>
@@ -128,19 +128,19 @@ export default function HomePage() {
           <Card className="relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
             <CardHeader className="relative">
-              <Rocket className="h-10 w-10 text-primary mb-2" />
-              <CardTitle>AI-Powered Features</CardTitle>
+              <Brain className="h-10 w-10 text-primary mb-2" />
+              <CardTitle>AI-Powered Search</CardTitle>
               <CardDescription>
-                Anthropic Claude integration with streaming responses. 
-                Ready-to-use AI endpoint with error handling.
+                Use natural language to search through your screenshots. 
+                Find text, UI elements, or describe what you're looking for.
               </CardDescription>
             </CardHeader>
             <CardContent className="relative">
               <ul className="text-sm text-muted-foreground space-y-1">
-                <li>• Claude API integration</li>
-                <li>• Streaming responses</li>
-                <li>• Function calling</li>
-                <li>• Rate limiting</li>
+                <li>• Natural language queries</li>
+                <li>• Text content search</li>
+                <li>• Visual element recognition</li>
+                <li>• Semantic understanding</li>
               </ul>
             </CardContent>
           </Card>
@@ -148,19 +148,19 @@ export default function HomePage() {
           <Card className="relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
             <CardHeader className="relative">
-              <Palette className="h-10 w-10 text-primary mb-2" />
-              <CardTitle>Beautiful UI Components</CardTitle>
+              <Image className="h-10 w-10 text-primary mb-2" />
+              <CardTitle>Visual Library</CardTitle>
               <CardDescription>
-                Shadcn/ui components with dark mode. Forms, modals, 
-                toasts, and more - all customizable and accessible.
+                Organize your screenshots automatically with smart categorization 
+                and instant access to your visual memory.
               </CardDescription>
             </CardHeader>
             <CardContent className="relative">
               <ul className="text-sm text-muted-foreground space-y-1">
-                <li>• 10+ components</li>
-                <li>• Dark mode support</li>
-                <li>• Fully accessible</li>
-                <li>• Tailwind styling</li>
+                <li>• Auto-categorization</li>
+                <li>• Smart tagging</li>
+                <li>• Visual gallery</li>
+                <li>• Quick filters</li>
               </ul>
             </CardContent>
           </Card>
@@ -171,10 +171,10 @@ export default function HomePage() {
       <section id="tech" className="container py-20 border-t">
         <div className="mx-auto flex max-w-[980px] flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-bold leading-tight tracking-tighter md:text-4xl">
-            Modern Tech Stack
+            Powered by Modern Technology
           </h2>
           <p className="max-w-[750px] text-lg text-muted-foreground">
-            Built with the latest and greatest tools for maximum productivity
+            Built with cutting-edge AI and search technology for lightning-fast visual retrieval
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <div className="flex items-center gap-2 rounded-lg border bg-card px-4 py-2">
@@ -194,12 +194,12 @@ export default function HomePage() {
               <span className="font-mono text-sm">Tailwind CSS</span>
             </div>
             <div className="flex items-center gap-2 rounded-lg border bg-card px-4 py-2">
-              <Zap className="h-4 w-4" />
-              <span className="font-mono text-sm">Claude AI</span>
+              <Brain className="h-4 w-4" />
+              <span className="font-mono text-sm">Claude Vision</span>
             </div>
             <div className="flex items-center gap-2 rounded-lg border bg-card px-4 py-2">
-              <Shield className="h-4 w-4" />
-              <span className="font-mono text-sm">shadcn/ui</span>
+              <Search className="h-4 w-4" />
+              <span className="font-mono text-sm">Vector Search</span>
             </div>
           </div>
         </div>
@@ -208,13 +208,13 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="container py-20">
         <div className="mx-auto flex max-w-[600px] flex-col items-center gap-4 text-center rounded-lg border bg-card p-8">
-          <h2 className="text-2xl font-bold">Ready to Build?</h2>
+          <h2 className="text-2xl font-bold">Start Building Your Visual Memory</h2>
           <p className="text-muted-foreground">
-            Stop reading, start shipping. Your next hackathon win is one clone away.
+            Stop scrolling through hundreds of screenshots. Find what you need in seconds.
           </p>
           <div className="flex gap-4 mt-4">
             <Link href="/dashboard">
-              <Button size="lg">Start Building</Button>
+              <Button size="lg">Start Capturing</Button>
             </Link>
             <Link href="/login">
               <Button size="lg" variant="outline">Sign In</Button>
@@ -227,9 +227,9 @@ export default function HomePage() {
       <footer className="border-t">
         <div className="container flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
           <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-            <Zap className="h-5 w-5" />
+            <Search className="h-5 w-5" />
             <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-              Built for speed. Open source. Made with ❤️ for hackathons.
+              Your visual memory assistant. Built for productivity. Made with ❤️
             </p>
           </div>
         </div>

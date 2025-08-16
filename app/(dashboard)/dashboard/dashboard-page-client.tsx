@@ -8,7 +8,7 @@ import { ResultsGrid } from '@/components/screenshot/results-grid'
 import { SearchResult } from '@/lib/database.types'
 import { useToast } from '@/hooks/use-toast'
 import { useRouter } from 'next/navigation'
-import { Upload, Image, Search, CheckCircle, Clock, AlertCircle, HardDrive } from 'lucide-react'
+import { Upload, Image, Search, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 
 interface DashboardStats {
@@ -83,14 +83,6 @@ export function DashboardPageClient({ initialStats }: DashboardPageClientProps) 
     }
   }
 
-  const formatBytes = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes'
-    const k = 1024
-    const sizes = ['Bytes', 'KB', 'MB', 'GB']
-    const i = Math.floor(Math.log(bytes) / Math.log(k))
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
-  }
-
   const stats = initialStats || {
     total_screenshots: 0,
     processed_screenshots: 0,
@@ -99,36 +91,6 @@ export function DashboardPageClient({ initialStats }: DashboardPageClientProps) 
     total_storage_used: 0
   }
 
-  const statsCards = [
-    {
-      title: "Total Screenshots",
-      value: (stats?.total_screenshots ?? 0).toString(),
-      description: "All uploaded images",
-      icon: Image,
-      color: "text-blue-600"
-    },
-    {
-      title: "Processed",
-      value: (stats?.processed_screenshots ?? 0).toString(),
-      description: "Ready for search",
-      icon: CheckCircle,
-      color: "text-green-600"
-    },
-    {
-      title: "Processing",
-      value: (stats?.pending_screenshots ?? 0).toString(),
-      description: "In progress",
-      icon: Clock,
-      color: "text-yellow-600"
-    },
-    {
-      title: "Storage Used",
-      value: formatBytes(stats?.total_storage_used ?? 0),
-      description: "Total space",
-      icon: HardDrive,
-      color: "text-purple-600"
-    }
-  ]
 
   return (
     <div className="space-y-6">
@@ -140,28 +102,6 @@ export function DashboardPageClient({ initialStats }: DashboardPageClientProps) 
         </p>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {statsCards.map((stat) => {
-          const Icon = stat.icon
-          return (
-            <Card key={stat.title}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  {stat.title}
-                </CardTitle>
-                <Icon className={`h-4 w-4 ${stat.color}`} />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{stat.value}</div>
-                <p className="text-xs text-muted-foreground">
-                  {stat.description}
-                </p>
-              </CardContent>
-            </Card>
-          )
-        })}
-      </div>
 
       {/* Search Section */}
       <Card>
