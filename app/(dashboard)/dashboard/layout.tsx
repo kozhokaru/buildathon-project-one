@@ -7,10 +7,8 @@ import { AuthButton } from "@/components/auth-button"
 import { Button } from "@/components/ui/button"
 import { 
   Search, 
-  Settings, 
   Upload, 
   Image, 
-  History,
   Menu,
   X
 } from "lucide-react"
@@ -31,16 +29,6 @@ const sidebarItems = [
     title: "Library",
     href: "/dashboard/library",
     icon: Image
-  },
-  {
-    title: "History",
-    href: "/dashboard/history",
-    icon: History
-  },
-  {
-    title: "Settings",
-    href: "/dashboard/settings",
-    icon: Settings
   }
 ]
 
