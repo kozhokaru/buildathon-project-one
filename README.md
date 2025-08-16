@@ -1,60 +1,64 @@
-# 🚀 Hackathon Speed-Run Template
+# 🔍 VisualMemory - AI-Powered Screenshot Search
 
-**Build 5 polished web apps in 5 hours.** This is your secret weapon for hackathons - a production-ready Next.js template with everything pre-configured.
+**Never lose visual information again.** VisualMemory lets you capture, organize, and instantly search through all your screenshots using AI-powered visual and text recognition.
 
 ![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)
 ![Tailwind](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=flat-square&logo=tailwindcss)
-![Supabase](https://img.shields.io/badge/Supabase-Auth-3ecf8e?style=flat-square&logo=supabase)
+![Supabase](https://img.shields.io/badge/Supabase-Database-3ecf8e?style=flat-square&logo=supabase)
+![OpenAI](https://img.shields.io/badge/OpenAI-Embeddings-412991?style=flat-square&logo=openai)
+![Claude](https://img.shields.io/badge/Claude-Vision-FF6B6B?style=flat-square&logo=anthropic)
 
 ## ✨ Features
 
-### Core Infrastructure
-- 🔐 **Authentication System** - Complete auth flow with email/password + GitHub OAuth
-- 🤖 **AI Integration** - Claude API with streaming responses and function calling
-- 🎨 **Component Library** - 10+ shadcn/ui components with dark mode support
-- 📊 **Dashboard Template** - Protected routes with responsive sidebar navigation
-- 🔥 **Type Safety** - Full TypeScript with proper types and error handling
-- ⚡ **Performance** - Server components, streaming SSR, edge runtime ready
-- 📱 **Responsive Design** - Mobile-first with beautiful animations
+### Core Features
+- 📸 **Smart Screenshot Capture** - Upload and automatically process screenshots with OCR
+- 🔍 **AI-Powered Search** - Natural language search through text and visual elements
+- 🧠 **Visual Recognition** - Claude Vision API analyzes UI elements, colors, and content
+- 💾 **Vector Search** - Semantic search using OpenAI embeddings and pgvector
+- 📚 **Visual Library** - Organize and browse your screenshot collection
+- ⚡ **Real-time Processing** - Background jobs for instant indexing
+- 🔐 **Secure Storage** - User-based authentication with Supabase
 
-### Pre-Built Pages
-- **Landing Page** - Modern gradient hero, feature cards, CTA sections
-- **Authentication** - Login/Signup with validation and error handling
-- **Dashboard** - Analytics cards, activity feed, quick actions
-- **API Routes** - AI endpoint with rate limiting and auth checks
+### What You Can Search
+- **Text Content** - Find any text that appears in your screenshots
+- **Error Messages** - "Show me authentication errors" or "database connection failed"
+- **UI Elements** - "Screenshots with blue buttons" or "forms with email fields"
+- **Visual Descriptions** - "Dark mode dashboard" or "mobile app screenshots"
+- **Code Snippets** - Find code blocks, terminal outputs, or debugging info
 
 ## 🏃‍♂️ Quick Start (2 minutes)
 
 ### Prerequisites
 - Node.js 18+ installed
 - Supabase account (free tier works)
-- Anthropic API key (optional for AI features)
+- OpenAI API key (required for embeddings)
+- Anthropic API key (required for visual analysis)
 
 ### 1. Clone & Install
 
 ```bash
-# Clone the template
-git clone https://github.com/yourusername/hackathon-template.git my-app
-cd my-app
+# Clone the repository
+git clone https://github.com/yourusername/visualmemory.git
+cd visualmemory
 
 # Install dependencies
 npm install
 
 # Copy environment variables
-cp .env.local.example .env.local
+cp .env.example .env.local
 ```
 
 ### 2. Set Up Supabase
 
 1. Create a new project at [supabase.com](https://supabase.com)
 2. Go to **Settings → API** to get your keys
-3. Configure GitHub OAuth (optional):
-   - Enable GitHub in **Authentication → Providers**
-   - Create OAuth App at [github.com/settings/applications/new](https://github.com/settings/applications/new)
-   - Add Client ID & Secret to Supabase
-   - Set callback URL: `https://YOUR_PROJECT.supabase.co/auth/v1/callback`
-4. Run the database migrations (see Database Setup below)
+3. Enable pgvector extension:
+   - Go to **Database → Extensions**
+   - Search for "vector" and enable it
+4. Run the database migrations in SQL Editor (see Database Setup below)
+5. Configure authentication (optional GitHub OAuth):
+   - Enable providers in **Authentication → Providers**
 
 ### 3. Configure Environment
 
@@ -65,8 +69,12 @@ NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
 
-# Anthropic AI (Optional)
-ANTHROPIC_API_KEY=sk-ant-api03-YOUR_KEY_HERE
+# AI APIs (Required)
+OPENAI_API_KEY=sk-proj-YOUR_KEY_HERE  # For embeddings
+ANTHROPIC_API_KEY=sk-ant-api03-YOUR_KEY_HERE  # For visual analysis
+
+# Application
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ```
 
 ### 4. Run Development Server
@@ -80,20 +88,25 @@ Open [http://localhost:3000](http://localhost:3000) 🎉
 ## 📁 Project Structure
 
 ```
-hackathon-template/
+visualmemory/
 ├── app/
 │   ├── (auth)/               # Authentication pages
-│   │   ├── login/           # Login page with GitHub OAuth
+│   │   ├── login/           # Login page
 │   │   ├── signup/          # Signup with validation
 │   │   ├── forgot-password/ # Password reset request
 │   │   └── reset-password/  # Set new password
 │   ├── (dashboard)/          # Protected dashboard area
 │   │   └── dashboard/
 │   │       ├── layout.tsx   # Sidebar navigation
-│   │       └── page.tsx     # Dashboard home
+│   │       ├── page.tsx     # Search interface
+│   │       ├── upload/      # Screenshot upload
+│   │       └── library/     # Screenshot gallery
 │   ├── api/
-│   │   └── ai/              # Claude AI endpoint
-│   │       └── route.ts     # Streaming responses
+│   │   ├── analyze/         # Visual analysis with Claude
+│   │   ├── embeddings/      # Generate search embeddings
+│   │   ├── process/         # Screenshot processing
+│   │   ├── search/          # Search endpoint
+│   │   └── upload/          # Upload handler
 │   ├── auth/
 │   │   └── callback/        # OAuth callback handler
 │   ├── globals.css          # Tailwind styles
@@ -107,6 +120,10 @@ hackathon-template/
 │   │   ├── input.tsx        # Form inputs
 │   │   ├── toast.tsx        # Notifications
 │   │   └── ...              # More components
+│   ├── screenshot/          # Screenshot components
+│   │   ├── search-bar.tsx   # Search interface
+│   │   ├── results-grid.tsx # Search results display
+│   │   └── upload-zone.tsx  # Drag & drop upload
 │   ├── auth-button.tsx      # Dynamic auth state button
 │   └── providers.tsx        # Theme & toast providers
 ├── hooks/
@@ -116,22 +133,22 @@ hackathon-template/
 │   ├── supabase/
 │   │   ├── client.ts        # Browser client
 │   │   ├── server.ts        # Server client
-│   │   └── middleware.ts    # Auth middleware
+│   │   ├── middleware.ts    # Auth middleware
+│   │   └── migrations/      # Database migrations
+│   ├── database.types.ts    # Generated TypeScript types
 │   └── utils.ts             # Helper functions
 ├── middleware.ts            # Route protection
-├── speed-snippets.md        # Copy-paste code blocks
 └── package.json             # Dependencies & scripts
 ```
 
 ## 🛠️ Available Scripts
 
 ```bash
-npm run dev      # Start development server
+npm run dev      # Start development server (http://localhost:3000)
 npm run build    # Build for production
 npm run start    # Start production server
 npm run lint     # Run ESLint
 npm run ui-add   # Add shadcn/ui components
-npm run deploy   # Git add, commit, push (auto-deploy)
 ```
 
 ## 🎨 Pre-installed Components
@@ -152,6 +169,37 @@ All these shadcn/ui components are ready to use:
 | **Skeleton** | Loading states | `@/components/ui/skeleton` |
 | **Table** | Data tables | `@/components/ui/table` |
 | **ScrollArea** | Scrollable areas | `@/components/ui/scroll-area` |
+
+## 🎯 Usage Guide
+
+### 1. Upload Screenshots
+
+Navigate to `/dashboard/upload` and:
+- Drag & drop multiple screenshots
+- Or click to browse and select files
+- Supports PNG, JPG, JPEG formats
+- Files are automatically processed with OCR
+
+### 2. Search Your Screenshots
+
+Go to `/dashboard` and search using natural language:
+
+```
+Examples:
+- "error message about authentication"
+- "blue submit button"
+- "dashboard with charts"
+- "code snippet with Python"
+- "red warning alert"
+```
+
+### 3. View Your Library
+
+Visit `/dashboard/library` to:
+- Browse all your screenshots
+- See processing status
+- View full-size images
+- Delete unwanted screenshots
 
 ## 📚 Common Patterns
 
@@ -273,68 +321,59 @@ export function ChatComponent() {
 
 ## 🗄️ Database Setup
 
-### Create Tables (Supabase SQL Editor)
+### 1. Enable pgvector Extension
+
+In Supabase Dashboard → Database → Extensions, enable "vector".
+
+### 2. Run Migrations (Supabase SQL Editor)
+
+Copy and run the migrations from `lib/supabase/migrations/` in order:
+
+1. **001_initial_schema.sql** - Creates core tables:
+   - `screenshots` - Screenshot metadata
+   - `screenshot_content` - OCR text and visual descriptions
+   - `screenshot_embeddings` - Vector embeddings for search
+   - `search_history` - User search queries
+   - `processing_queue` - Background job management
+
+2. **002_vector_search_function.sql** - Adds search functions:
+   - `search_screenshots_hybrid` - Combined text + vector search
+   - `get_user_screenshot_stats` - Dashboard statistics
+
+Example core tables:
 
 ```sql
--- Users profile table (extends auth.users)
-CREATE TABLE profiles (
-  id UUID REFERENCES auth.users(id) ON DELETE CASCADE PRIMARY KEY,
-  username TEXT UNIQUE,
-  full_name TEXT,
-  avatar_url TEXT,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- Example: Items table
-CREATE TABLE items (
+-- Screenshots table
+CREATE TABLE screenshots (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
-  name TEXT NOT NULL,
-  description TEXT,
-  status TEXT DEFAULT 'active',
-  metadata JSONB DEFAULT '{}',
+  file_name TEXT NOT NULL,
+  file_size INTEGER,
+  file_url TEXT NOT NULL,
+  thumbnail_url TEXT,
+  status TEXT DEFAULT 'pending',
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Enable Row Level Security
-ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
-ALTER TABLE items ENABLE ROW LEVEL SECURITY;
+-- Enable Row Level Security (critical for security)
+ALTER TABLE screenshots ENABLE ROW LEVEL SECURITY;
+ALTER TABLE screenshot_content ENABLE ROW LEVEL SECURITY;
+ALTER TABLE screenshot_embeddings ENABLE ROW LEVEL SECURITY;
 
--- Profiles policies
-CREATE POLICY "Users can view own profile" ON profiles
-  FOR SELECT USING (auth.uid() = id);
-
-CREATE POLICY "Users can update own profile" ON profiles
-  FOR UPDATE USING (auth.uid() = id);
-
--- Items policies
-CREATE POLICY "Users can view own items" ON items
+-- Example RLS policies for screenshots
+CREATE POLICY "Users can view own screenshots" ON screenshots
   FOR SELECT USING (auth.uid() = user_id);
 
-CREATE POLICY "Users can create own items" ON items
+CREATE POLICY "Users can create own screenshots" ON screenshots
   FOR INSERT WITH CHECK (auth.uid() = user_id);
 
-CREATE POLICY "Users can update own items" ON items
+CREATE POLICY "Users can update own screenshots" ON screenshots
   FOR UPDATE USING (auth.uid() = user_id);
 
-CREATE POLICY "Users can delete own items" ON items
+CREATE POLICY "Users can delete own screenshots" ON screenshots
   FOR DELETE USING (auth.uid() = user_id);
 
--- Automatic profile creation trigger
-CREATE OR REPLACE FUNCTION public.handle_new_user()
-RETURNS trigger AS $$
-BEGIN
-  INSERT INTO public.profiles (id, full_name, avatar_url)
-  VALUES (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url');
-  RETURN new;
-END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
-
-CREATE TRIGGER on_auth_user_created
-  AFTER INSERT ON auth.users
-  FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 ```
 
 ### Generate TypeScript Types
@@ -501,8 +540,6 @@ Built with amazing open source projects:
 
 ---
 
-**Built with ❤️ for hackathon warriors**
+**Built with ❤️ for anyone who takes too many screenshots**
 
-Need help? Check [speed-snippets.md](./speed-snippets.md) for instant solutions!
-
-Star ⭐ this repo if it helps you ship faster!
+Star ⭐ this repo if it helps you find that screenshot you took 3 months ago!
