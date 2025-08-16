@@ -246,7 +246,7 @@ const response = await fetch('/api/ai', {
     messages: [
       { role: 'user', content: 'Hello Claude!' }
     ],
-    model: 'claude-3-5-sonnet-20241022',
+    model: 'claude-sonnet-4-20250514',
     temperature: 0.7
   })
 })

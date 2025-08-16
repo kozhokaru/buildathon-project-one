@@ -6,12 +6,11 @@ import { cn } from "@/lib/utils"
 import { AuthButton } from "@/components/auth-button"
 import { Button } from "@/components/ui/button"
 import { 
-  Home, 
+  Search, 
   Settings, 
-  FileText, 
-  BarChart, 
-  Users, 
-  Zap,
+  Upload, 
+  Image, 
+  History,
   Menu,
   X
 } from "lucide-react"
@@ -19,24 +18,24 @@ import { useState } from "react"
 
 const sidebarItems = [
   {
-    title: "Dashboard",
+    title: "Search",
     href: "/dashboard",
-    icon: Home
+    icon: Search
   },
   {
-    title: "Analytics",
-    href: "/dashboard/analytics",
-    icon: BarChart
+    title: "Upload",
+    href: "/dashboard/upload",
+    icon: Upload
   },
   {
-    title: "Documents",
-    href: "/dashboard/documents",
-    icon: FileText
+    title: "Library",
+    href: "/dashboard/library",
+    icon: Image
   },
   {
-    title: "Team",
-    href: "/dashboard/team",
-    icon: Users
+    title: "History",
+    href: "/dashboard/history",
+    icon: History
   },
   {
     title: "Settings",
@@ -72,8 +71,8 @@ export default function DashboardLayout({
           {/* Sidebar Header */}
           <div className="flex h-14 items-center border-b px-6">
             <Link className="flex items-center gap-2 font-semibold" href="/dashboard">
-              <Zap className="h-5 w-5" />
-              <span>HackTemplate</span>
+              <Search className="h-5 w-5" />
+              <span>VisualMemory</span>
             </Link>
             <Button
               variant="ghost"

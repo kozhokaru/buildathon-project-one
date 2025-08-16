@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Get the request body
-    const { messages, model = 'claude-3-5-sonnet-20241022', temperature = 0.7 } = await req.json()
+    const { messages, model = 'claude-sonnet-4-20250514', temperature = 0.7 } = await req.json()
 
     if (!messages || !Array.isArray(messages)) {
       return new Response('Invalid request: messages array required', { status: 400 })
@@ -79,7 +79,7 @@ export async function GET(req: NextRequest) {
       message: 'AI endpoint is ready',
       user: user.email,
       models: [
-        'claude-3-5-sonnet-20241022',
+        'claude-sonnet-4-20250514',
         'claude-3-5-haiku-20241022',
         'claude-3-opus-20240229'
       ],
