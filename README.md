@@ -39,8 +39,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/visualmemory.git
-cd visualmemory
+git clone https://github.com/kozhokaru/buildathon-project-one.git
+cd buildathon-project-one
 
 # Install dependencies
 npm install

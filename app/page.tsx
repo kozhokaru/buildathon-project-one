@@ -32,7 +32,7 @@ export default function HomePage() {
               </Link>
               <Link
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
-                href="https://github.com/yourusername/visualmemory"
+                href="https://github.com/kozhokaru/buildathon-project-one"
                 target="_blank"
               >
                 GitHub
@@ -69,7 +69,7 @@ export default function HomePage() {
                     Get Started <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
-                <Link href="https://github.com/yourusername/visualmemory" target="_blank">
+                <Link href="https://github.com/kozhokaru/buildathon-project-one" target="_blank">
                   <Button size="lg" variant="outline">
                     View on GitHub
                   </Button>
